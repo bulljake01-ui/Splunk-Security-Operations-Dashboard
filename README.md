@@ -11,7 +11,7 @@ This project demonstrates a custom Splunk dashboard built to visualize authentic
 - Choropleth map and bar chart visualizations
 
 ## Features
-- Extracts `user` and `login_status` using `rex` commands
+- Extracts `user` and `login_status` using Field Extraction configurations
 - Maps failed login attempts by country using `iplocation`
 - Lists top users and source IPs with failed authentication attempts
 
