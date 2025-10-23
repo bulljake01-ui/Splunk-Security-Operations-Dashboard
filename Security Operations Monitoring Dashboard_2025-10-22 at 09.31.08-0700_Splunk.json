@@ -1,0 +1,250 @@
+{
+  "dataSources": {
+    "ds_qzsqJdsb": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"tutorialdata.zip:*\" login_status=\"Failed password\" | iplocation src_ip | stats count by Country | geom geo_countries featureIdField=Country",
+        "queryParameters": {
+          "earliest": "0",
+          "sampleRatio": 1
+        }
+      },
+      "name": "Failed Logins by Country search"
+    },
+    "ds_YQ4EaTch": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"tutorialdata.zip:*\" login_status=\"Failed password\" | stats count by user3, src_ip \r\n| sort -count | head 15",
+        "queryParameters": {
+          "earliest": "0",
+          "sampleRatio": 1
+        }
+      },
+      "name": "Top Users by Failed Logins search"
+    },
+    "ds_0DiyCDck": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"tutorialdata.zip:*\" login_status=\"Failed password\" | top src_ip limit=10",
+        "queryParameters": {
+          "earliest": "0",
+          "sampleRatio": 1
+        }
+      },
+      "name": "Top Source IP Failed Logins search"
+    },
+    "ds_NFDNTZU8": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"tutorialdata.zip:*\" login_status=\"Failed password\" | iplocation src_ip | stats count by Country",
+        "queryParameters": {
+          "earliest": "0",
+          "sampleRatio": 1
+        }
+      },
+      "name": "Choropleth map search"
+    },
+    "ds_j6zeRaZo": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"tutorialdata.zip:*\" login_status=\"Failed password\" | iplocation src_ip | stats count by Country",
+        "queryParameters": {
+          "earliest": "0",
+          "sampleRatio": 1
+        }
+      },
+      "name": "Failed Logins by Country search"
+    },
+    "ds_VHKnQFmS": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"tutorialdata.zip:*\" login_status=\"Failed password\" | stats count by user3, src_ip | sort -count",
+        "queryParameters": {
+          "earliest": "0",
+          "sampleRatio": 1
+        }
+      },
+      "name": "Failed Logins by User and Source IP - Table search"
+    }
+  },
+  "visualizations": {
+    "viz_EBYjvupo": {
+      "type": "splunk.map",
+      "options": {
+        "center": [
+          28.024019805156584,
+          -148.7598113807008
+        ],
+        "zoom": 0.672406699081579,
+        "showBaseLayer": true,
+        "layers": [
+          {
+            "type": "choropleth",
+            "dataColors": "> areaValues | gradient(dataColorsGradientConfig)",
+            "choroplethOpacity": 0.75
+          }
+        ]
+      },
+      "context": {
+        "dataColorsGradientConfig": {
+          "colors": [
+            "#ffffff",
+            "#d41f1f"
+          ]
+        }
+      },
+      "dataSources": {
+        "primary": "ds_qzsqJdsb"
+      },
+      "title": "Failed Logins by Country"
+    },
+    "viz_fpr4BPRp": {
+      "type": "splunk.column",
+      "options": {
+        "yAxisAbbreviation": "auto",
+        "y2AxisAbbreviation": "auto",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true,
+        "xAxisLabelRotation": 0,
+        "xAxisTitleVisibility": "show",
+        "yAxisTitleVisibility": "show",
+        "y2AxisTitleVisibility": "show",
+        "yAxisScale": "linear",
+        "showOverlayY2Axis": false,
+        "y2AxisScale": "inherit",
+        "dataValuesDisplay": "off",
+        "stackMode": "auto",
+        "showSplitSeries": false,
+        "showIndependentYRanges": false,
+        "legendDisplay": "right"
+      },
+      "dataSources": {
+        "primary": "ds_YQ4EaTch"
+      },
+      "title": "Top Users by Failed Logins"
+    },
+    "viz_YeWbkPYE": {
+      "type": "splunk.pie",
+      "options": {
+        "collapseThreshold": 0.01
+      },
+      "dataSources": {
+        "primary": "ds_0DiyCDck"
+      },
+      "title": "Top Source IP Failed Logins"
+    },
+    "viz_VJ5q0IPt": {
+      "type": "splunk.table",
+      "options": {
+        "count": 20,
+        "dataOverlayMode": "none",
+        "drilldown": "none",
+        "showRowNumbers": false,
+        "showInternalFields": false
+      },
+      "dataSources": {
+        "primary": "ds_VHKnQFmS"
+      },
+      "title": "Failed Logins by User and Source IP"
+    }
+  },
+  "applicationProperties": {
+    "hideEdit": false,
+    "hideExport": false
+  },
+  "inputs": {
+    "input_global_trp": {
+      "type": "input.timerange",
+      "options": {
+        "token": "global_time",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Global Time Range"
+    }
+  },
+  "layout": {
+    "options": {},
+    "globalInputs": [
+      "input_global_trp"
+    ],
+    "tabs": {
+      "items": [
+        {
+          "layoutId": "layout_1",
+          "label": "New tab"
+        }
+      ]
+    },
+    "layoutDefinitions": {
+      "layout_1": {
+        "type": "grid",
+        "structure": [
+          {
+            "item": "viz_VJ5q0IPt",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "w": 719,
+              "h": 315
+            }
+          },
+          {
+            "item": "viz_YeWbkPYE",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 315,
+              "w": 719,
+              "h": 360
+            }
+          },
+          {
+            "item": "viz_fpr4BPRp",
+            "type": "block",
+            "position": {
+              "x": 719,
+              "y": 0,
+              "w": 721,
+              "h": 315
+            }
+          },
+          {
+            "item": "viz_EBYjvupo",
+            "type": "block",
+            "position": {
+              "x": 719,
+              "y": 315,
+              "w": 721,
+              "h": 360
+            }
+          }
+        ],
+        "options": {
+          "width": 1440,
+          "height": 960
+        }
+      }
+    }
+  },
+  "title": "Security Operations Monitoring Dashboard",
+  "description": "",
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  }
+}
