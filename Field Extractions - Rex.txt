@@ -1,0 +1,12 @@
+Field Extractions - Rex
+
+User -
+^\w+\s+\w+\s+\d+\s+\d+\s+\d+:\d+:\d+\s+\w+\d+\s+\w+\[\d+\]:\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+(?P<user3>[^ ]+)
+
+Login Status -
+
+^[^\]\n]*\]:\s+(?P<login_status>\w+\s+\w+)
+
+Src_ip - 
+
+^\w+\s+\w+\s+\d+\s+\d+\s+\d+:\d+:\d+\s+\w+\d+\s+\w+\[\d+\]:\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+(?P<src_ip>[^ ]+)
