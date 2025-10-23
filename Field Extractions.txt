@@ -1,6 +1,7 @@
-Field Extractions - Rex
+Field Extractions
 
 User -
+
 ^\w+\s+\w+\s+\d+\s+\d+\s+\d+:\d+:\d+\s+\w+\d+\s+\w+\[\d+\]:\s+\w+\s+\w+\s+\w+\s+\w+\s+\w+\s+(?P<user3>[^ ]+)
 
 Login Status -
