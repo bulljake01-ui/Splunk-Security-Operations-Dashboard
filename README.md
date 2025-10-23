@@ -1,13 +1,26 @@
-# Splunk-Security-Operations-Dashboard
-Goal: Detect failed logins and visualize authentication activity
-Tools: Splunk Enterprise, CSV dataset, SPL queries
+# Splunk Security Monitoring Dashboard
 
-Key Features:
+## Overview
+This project demonstrates a custom Splunk dashboard built to visualize authentication activity and detect potential security anomalies. It includes regex-based field extractions, geographic mapping of failed logins, and data filtering.
 
-Tracks login success/failure
+## Tools & Technologies
+- Splunk Cloud Free
+- SPL (Search Processing Language)
+- Regex-based field extractions
+- iplocation command (geolocation)
+- Choropleth map and bar chart visualizations
 
-Maps failed logins by country
+## Features
+- Extracts `user` and `login_status` using `rex` commands
+- Maps failed login attempts by country using `iplocation`
+- Lists top users and source IPs with failed authentication attempts
 
-Identifies top offending IPs
+## Dashboard Preview
+![Dashboard Screenshot](Splunk_Dashboard_Preview.png)
 
-Displays login trends over time
+## Example SPL Searches
+```spl
+source="tutorialdata.zip:*" login_status="Failed password"
+| iplocation src_ip
+| stats count by Country
+| geom geo_countries featureIdField=Country 
